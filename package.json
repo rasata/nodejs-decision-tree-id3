@@ -17,6 +17,16 @@
       "require": "./lib/decision-tree.js",
       "types": "./lib/decision-tree.d.ts"
     },
+    "./xgboost": {
+      "import": "./lib/xgboost.js",
+      "require": "./lib/xgboost.js",
+      "types": "./lib/xgboost.d.ts"
+    },
+    "./xgboost": {
+      "import": "./lib/random-forest.js",
+      "require": "./lib/random-forest.js",
+      "types": "./lib/random-forest.d.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [
