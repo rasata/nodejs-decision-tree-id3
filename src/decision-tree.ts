@@ -239,6 +239,11 @@ class DecisionTree {
    * @returns Predicted class value
    */
   predict(sample: TrainingData): any {
+    // Check if model has been trained
+    if (!this.model) {
+      throw new Error('Decision Tree has not been trained yet. Call train() first.');
+    }
+
     // Check cache first if enabled
     if (this.config.cachingEnabled) {
       const modelId = this.getModelId();
@@ -310,6 +315,10 @@ class DecisionTree {
    * @returns Accuracy ratio (correct predictions / total predictions)
    */
   evaluate(samples: TrainingData[]): number {
+    if (!samples || samples.length === 0) {
+      throw new Error('Cannot evaluate on empty samples array');
+    }
+
     let total = 0;
     let correct = 0;
 

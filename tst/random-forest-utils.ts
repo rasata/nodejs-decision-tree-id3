@@ -212,8 +212,7 @@ describe('Random Forest Utility Functions', function() {
 
     it('should handle empty predictions', () => {
       const predictions: any[] = [];
-      const result = majorityVote(predictions);
-      assert.strictEqual(result, null);
+      assert.throws(() => majorityVote(predictions), /Cannot perform majority vote on empty predictions array/);
     });
 
     it('should handle all same predictions', () => {

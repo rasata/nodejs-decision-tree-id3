@@ -113,6 +113,10 @@ export function entropy(vals: any[]): number {
   });
 
   let logVals = probs.map(function (p) {
+    // Skip zero probabilities to avoid log2(0) = -Infinity
+    if (p <= 0) {
+      return 0;
+    }
     return -p * log2(p);
   });
 
@@ -150,6 +154,10 @@ export function gain(data: TrainingData[], target: string, feature: string): num
  * @private
  */
 export function maxGain(data: TrainingData[], target: string, features: string[]): FeatureGain {
+  if (!features || features.length === 0) {
+    throw new Error('Cannot compute maxGain with empty features array');
+  }
+
   let maxGain: number | undefined;
   let maxGainFeature: string | undefined;
   
@@ -161,5 +169,9 @@ export function maxGain(data: TrainingData[], target: string, features: string[]
     }
   }
   
-  return {gain: maxGain!, name: maxGainFeature!};
+  if (maxGain === undefined || maxGainFeature === undefined) {
+    throw new Error('Failed to compute maxGain - no valid features found');
+  }
+  
+  return {gain: maxGain, name: maxGainFeature};
 }

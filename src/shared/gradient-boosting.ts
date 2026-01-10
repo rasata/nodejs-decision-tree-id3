@@ -273,6 +273,10 @@ export function calculateBaseScore(
   target: string, 
   objective: 'regression' | 'binary' | 'multiclass'
 ): number {
+  if (!data || data.length === 0) {
+    throw new Error('Cannot calculate base score with empty data array');
+  }
+
   const targetValues = data.map(sample => sample[target]);
   
   switch (objective) {

@@ -147,7 +147,7 @@ describe('Model Persistence & Import/Export', () => {
       const dt = new DecisionTree(corruptedData);
       assert.throws(() => {
         dt.predict({ color: 'red', shape: 'circle', size: 'small' });
-      }, /Cannot read properties of null/);
+      }, /Decision Tree has not been trained yet/);
     });
 
     it('should handle missing model properties', () => {
@@ -163,7 +163,7 @@ describe('Model Persistence & Import/Export', () => {
       const dt = new DecisionTree(incompleteData as any);
       assert.throws(() => {
         dt.predict({ color: 'red', shape: 'circle', size: 'small' });
-      }, /Cannot read properties of undefined/);
+      }, /Decision Tree has not been trained yet/);
     });
 
     it('should handle missing data property', () => {

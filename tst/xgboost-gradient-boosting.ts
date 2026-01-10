@@ -132,8 +132,7 @@ describe('XGBoost Gradient Boosting - calculateBaseScore', function() {
   });
 
   it('should handle empty data', () => {
-    const baseScore = calculateBaseScore([], 'target', 'regression');
-    assert.ok(isNaN(baseScore));
+    assert.throws(() => calculateBaseScore([], 'target', 'regression'), /Cannot calculate base score with empty data array/);
   });
 
   it('should handle single sample', () => {

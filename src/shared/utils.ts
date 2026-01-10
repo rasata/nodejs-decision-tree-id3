@@ -17,6 +17,10 @@ export function randomUUID(): string {
  * @private
  */
 export function prob(value: any, list: any[]): number {
+  if (!list || list.length === 0) {
+    return 0;
+  }
+
   let occurrences = _.filter(list, function (element) {
     return element === value;
   });
@@ -31,6 +35,12 @@ export function prob(value: any, list: any[]): number {
  * @private
  */
 export function log2(n: number): number {
+  if (n <= 0) {
+    if (n === 0) {
+      return -Infinity;
+    }
+    return NaN; // Negative numbers result in NaN
+  }
   return Math.log(n) / Math.log(2);
 }
 
@@ -39,6 +49,10 @@ export function log2(n: number): number {
  * @private
  */
 export function mostCommon(list: any[]): any {
+  if (!list || list.length === 0) {
+    throw new Error('Cannot find most common element in empty list');
+  }
+
   let elementFrequencyMap: { [key: string]: number } = {};
   let largestFrequency = -1;
   let mostCommonElement: any = null;
@@ -138,6 +152,10 @@ export function selectRandomFeatures(
  * @private
  */
 export function majorityVote(predictions: any[]): any {
+  if (!predictions || predictions.length === 0) {
+    throw new Error('Cannot perform majority vote on empty predictions array');
+  }
+
   const frequencyMap: { [key: string]: number } = {};
   
   predictions.forEach(prediction => {

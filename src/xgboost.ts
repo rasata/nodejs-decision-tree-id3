@@ -429,6 +429,10 @@ class XGBoost {
    * @returns Accuracy ratio (correct predictions / total predictions)
    */
   evaluate(samples: TrainingData[]): number {
+    if (!samples || samples.length === 0) {
+      throw new Error('Cannot evaluate on empty samples array');
+    }
+
     let total = 0;
     let correct = 0;
 

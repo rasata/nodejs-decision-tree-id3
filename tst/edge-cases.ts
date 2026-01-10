@@ -5,10 +5,8 @@ describe('Edge Cases & Error Handling', () => {
   describe('Empty and Invalid Datasets', () => {
     it('should handle empty training dataset', () => {
       const dt = new DecisionTree('target', ['feature1', 'feature2']);
-      // Note: Current implementation only validates that data is an array, not that it has elements
-      // Empty arrays are allowed and will create a tree with no features
-      dt.train([]);
-      assert.ok(dt.toJSON());
+      // Empty arrays should throw an error during tree creation
+      assert.throws(() => dt.train([]), /Cannot find most common element in empty list/);
     });
 
     it('should handle single sample training dataset', () => {
